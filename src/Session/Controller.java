@@ -5,6 +5,7 @@ import MainPackage.Main;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.geometry.Pos;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,7 +57,7 @@ public class Controller implements Initializable {
             Noyau.session = new Session();
             PlaySession(0);
         }
-    public void PlaySession(int i){
+    public void PlaySession(int i)  {
         if (i < 10 && Noyau.session.getNbTromp()<6) {
             NbrMot.setText("Mot N°" + (i + 1));
             TypeQuestion.setText(Noyau.session.getQuestions()[i].getTypeQuestion().toString());
@@ -67,16 +68,16 @@ public class Controller implements Initializable {
                 if (cases[j] instanceof PropositionCase) {
                     JFXComboBox props = new JFXComboBox();
                     props.setStyle("-fx-background-color: #FFD54F;");
-                    props.setMaxSize(40, 30);
+                    props.setMaxSize(60, 40);
                     for (int k = 0; k < 4; k++) {
-                        props.getItems().add(((PropositionCase) cases[j]).getLettresPoss()[k]);
+                        props.getItems().add(Character.toUpperCase(((PropositionCase) cases[j]).getLettresPoss()[k]));
                     }
                     props.setId(j + "");
                     props.setOnAction(event -> {
-                            //invisible(Integer.parseInt(props.getId()));
+                            invisible(Integer.parseInt(props.getId()));
                             props.setDisable(true);
-                            //visible();
-                            char l = (char) props.getValue();
+                            visible();
+                            char l = Character.toLowerCase((char) props.getValue());
                             if (((PropositionCase) cases[Integer.parseInt(props.getId())]).stop(l)) {
                                 Noyau.session.setNbTromp(Noyau.session.getNbTromp()+1);
                                 //todo:image
@@ -97,29 +98,35 @@ public class Controller implements Initializable {
                 } else {
                     if (cases[j] instanceof MultiChancesCase) {
                         JFXTextField mtext = new JFXTextField();
-                        mtext.setStyle("-fx-background-color: #FF8A65;");
-                        mtext.setMaxSize(40, 30);
+                        mtext.setStyle("-fx-background-color: #AED581;");
+                        mtext.setMaxSize(60, 40);
                         mtext.setId(j + "");
-                        mtext.addEventFilter(KeyEvent.KEY_TYPED,letter_Validation(1));
-
-                        /*mtext.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+                        //mtext.addEventFilter(KeyEvent.KEY_TYPED,letter_Validation(1));
+                        mtext.textProperty().addListener((ov,oldValue,newValue)-> {
+                            mtext.setText(newValue.toUpperCase());
+                        });
+                        mtext.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
                             String newText = change.getControlNewText();
-                            if (newText.length()>1){
-                                return null;
-                            }else{
+                            if (newText.length()>1 || (newText.length() == 1) && !newText.matches("[A-Za-z]")){
+                                return  null;
+                            }else {
                                 return change;
                             }
-                        }));*/
+                        }));
                         mtext.setOnAction(event -> {
-                            char l = mtext.getText().charAt(0);
+                            invisible(Integer.parseInt(mtext.getId()));
+                            char l = Character.toLowerCase(mtext.getText().charAt(0));
+                            System.out.println(mtext.getText());
                             if (((MultiChancesCase) cases[Integer.parseInt(mtext.getId())]).stop(l)) {
                                 Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
                                 Noyau.session.setNbTromp(Noyau.session.getNbTromp() + 1);
                                 //todo:image
+                                visible();
                                 CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
                                 PlaySession(i + 1);
                             } else if (((MultiChancesCase) cases[Integer.parseInt(mtext.getId())]).getReponse()) {
                                 mtext.setDisable(true);
+                                visible();
                             }
                             if (allDisabled()) {
                                 Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
@@ -130,20 +137,24 @@ public class Controller implements Initializable {
                         CasesMot.getChildren().add(mtext);
                     } else {
                         JFXTextField text = new JFXTextField();
-                        text.setStyle("-fx-background-color: #AED581;");
-                        text.setMaxSize(40, 30);
+                        text.setStyle("-fx-background-color: #FF8A65;");
+                        text.setMaxSize(60, 40);
                         text.setId(j + "");
-                        text.addEventFilter(KeyEvent.KEY_TYPED,letter_Validation(1));
-                        /*text.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+                        //text.addEventFilter(KeyEvent.KEY_TYPED,letter_Validation(1));
+                        text.textProperty().addListener((ov,oldValue,newValue)->{
+                            text.setText(newValue.toUpperCase());
+                        });
+                        text.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
                             String newText = change.getControlNewText();
-                            if (newText.length()>1){
-                                return null;
-                            }else{
+                            if (newText.length()>1 || (newText.length() == 1) && !newText.matches("[A-Za-z]")){
+                                return  null;
+                            }else {
                                 return change;
                             }
-                        }));*/
+                        }));
                         text.setOnAction(event -> {
-                                char l = text.getText().charAt(0);
+                                char l = Character.toLowerCase(text.getText().charAt(0));
+                                System.out.println(text.getText());
                                 text.setDisable(true);
                                 if (((ZeroChanceCase) cases[Integer.parseInt(text.getId())]).stop(l)) {
                                     Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
@@ -162,20 +173,25 @@ public class Controller implements Initializable {
                 }
             }
             else{
-             if ( Noyau.session.getNbTromp()==6) {
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Non! Vous avez perdu !!");
+             if ( Noyau.session.getNbTromp()>=6) {
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Non! Vous avez perdu !!, voulez-vous sauvegarder votre score ?");
                  alert.showAndWait();
-                 /*if (alert.getResult().getText().equals("OK")){
-
-                 }*/
+                 if (alert.getResult().getText().equals("OK")){
+                     Noyau.saveScore(Integer.valueOf(Score.getText()));
+                 }
              }
              else{
-                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bravo, Vous avez gagner !!");
+                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bravo, Vous avez gagner !!, voulez-vous sauvegarder votre score ?");
                  alert.showAndWait();
-                 /*if (alert.getResult().getText().equals("OK")){
-
-                 }*/
+                 if (alert.getResult().getText().equals("OK")){
+                     Noyau.saveScore(Integer.valueOf(Score.getText()));
+                 }
              }
+            try {
+                Main.gotoMainWindow();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             }
             }
     private boolean allDisabled(){ // retourne vrai si le mot est completement trouver, faux sinon
@@ -189,7 +205,7 @@ public class Controller implements Initializable {
         return true;
     }
 
-    /*public void invisible (int pos) { // mettre toutes les cases invisibles sauf la case de position pos
+    public void invisible (int pos) { // mettre toutes les cases invisibles sauf la case de position pos
         for (int i=0;i<CasesMot.getChildren().size();i++)
         {
             if (i!=pos)
@@ -204,7 +220,7 @@ public class Controller implements Initializable {
         {
             CasesMot.getChildren().get(i).setVisible(true);
         }
-    }*/
+    }
 
     public javafx.event.EventHandler<KeyEvent> letter_Validation(final Integer max_length){
         return new javafx.event.EventHandler<KeyEvent>() {
@@ -215,7 +231,6 @@ public class Controller implements Initializable {
                     event.consume();
                 }
                 if (event.getCharacter().matches("[A-Za-z]")){
-
                 }else{
                     event.consume();
                 }
