@@ -30,7 +30,7 @@ public class Controller {
         void MakeSignUp(ActionEvent event) throws Exception {
             String pseud = username.getText();
             if (Noyau.pseudonymeValide(pseud)) {
-                Joueur user = Noyau.Inscription(pseud);
+                Joueur user = Noyau.inscription(pseud);
                 if (user != null) {
                     Noyau.user = user;
                     Main.gotoMainWindow();
@@ -48,7 +48,7 @@ public class Controller {
         void makeLogin(ActionEvent event) throws Exception {
             String pseud = username.getText();
             if (Noyau.pseudonymeValide(pseud)) {
-                Joueur user = Noyau.Connecter(pseud);
+                Joueur user = Noyau.connecter(pseud);
                 if (user != null) {
                     Noyau.user = user;
                     Main.gotoMainWindow();

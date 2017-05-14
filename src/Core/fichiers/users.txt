@@ -1,6 +1,4 @@
-mohamed;45,9,50
-elhadi;41,1,6,9
-amine;19,1
-oussama;19,0
-test;0,9
-Elhadi;0,7
+mohamed;45,30,20
+elhadi;41,4,8
+oussama;19,-6
+amine;19,9,0
