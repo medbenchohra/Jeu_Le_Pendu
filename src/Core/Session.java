@@ -38,7 +38,7 @@ public class Session extends Constantes{
         SecureRandom rand = new SecureRandom();
 
         try {
-            in = new BufferedReader(new InputStreamReader(new FileInputStream("mots.txt"), "UTF-8"));
+            in = new BufferedReader(new InputStreamReader(new FileInputStream("src/Core/fichiers/mots.txt"), "UTF-8"));
             LineNumberReader lignes = new LineNumberReader(in);
 
 //            long nbrMotsFichier = in.lines().count();

@@ -18,15 +18,16 @@ public class PropositionCase extends ZeroChanceCase implements Malus {
     public PropositionCase(char l)
     {
         super(l);
-
+        String Alphabets = new String(ALPHABETS);
         int indiceLettreJuste = new SecureRandom().nextInt(4),indice;
         lettresPoss[indiceLettreJuste] = l;
         for (int i=0;i<4;i++) {
             if (i != indiceLettreJuste) {
                 do {
                     indice = new SecureRandom().nextInt(26);
-                }while (ALPHABETS.toCharArray()[indice] == l);
-                lettresPoss[i] = ALPHABETS.toCharArray()[indice];
+                }while (Alphabets.toCharArray()[indice] == l);
+                lettresPoss[i] = Alphabets.toCharArray()[indice];
+                Alphabets.replaceFirst("" + lettresPoss[i],"");
             }
         }
     }
@@ -57,7 +58,7 @@ public class PropositionCase extends ZeroChanceCase implements Malus {
 
     @Override
     public int calculerMalus() {
-        if (super.isActive())
+        if (super.isActive() && !getReponse())
             return propositionsMalus;
         else
             return 0;

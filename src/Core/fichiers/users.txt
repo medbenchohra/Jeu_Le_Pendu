@@ -1,5 +1,5 @@
 mohamed;45,30,20,0
 elhadi;41,4,8
 oussama;19,-6
+ronaldo;1,-30,125
 amine;19,9,0
-ronaldo;1

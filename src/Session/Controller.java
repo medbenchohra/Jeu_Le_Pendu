@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Stop;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -154,9 +155,11 @@ public class Controller implements Initializable {
                         }));
                         text.setOnAction(event -> {
                                 char l = Character.toLowerCase(text.getText().charAt(0));
-                                System.out.println(text.getText());
+                                System.out.println(text.getId());
                                 text.setDisable(true);
+                                System.out.println("LOG: stop == " + cases[Integer.parseInt(text.getId())].stop(l));
                                 if (((ZeroChanceCase) cases[Integer.parseInt(text.getId())]).stop(l)) {
+                                    System.out.println("LOG: into if,");
                                     Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
                                     Noyau.session.setNbTromp(Noyau.session.getNbTromp() + 1);
                                     //todo:image

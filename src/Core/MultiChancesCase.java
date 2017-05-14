@@ -64,12 +64,9 @@ public class MultiChancesCase extends Case implements Malus {
 
     public int calculerMalus()
     {
-        if (active) {
+        if (active && !reponse) {
             return (nbTromp * coefMultiChances * multiChancesMalus);
-        }
-
-        else
-        {
+        }else{
             return 0;
         }
     }
