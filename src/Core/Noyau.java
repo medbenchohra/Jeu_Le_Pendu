@@ -4,10 +4,7 @@ import com.sun.istack.internal.Interned;
 import com.sun.istack.internal.NotNull;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Created by The King Mohamed on 27/04/2017.
@@ -84,8 +81,11 @@ public class Noyau extends Constantes {
         try {
             while ((ligne = in.readLine()) != null) {
                 pseudonyme = (ligne.split(";"))[0];
-                meilleurScore = toIntegerTreeSet(ligne.split(";")[1].split(",")).last().intValue();
-                users.put(pseudonyme,new Joueur(pseudonyme,meilleurScore));
+                String[] scoresStringArray = ligne.split(";")[1].split(",");
+                ArrayList<Integer> scores = toIntegerArrayList(scoresStringArray);
+                meilleurScore = Collections.max(toIntegerArrayList(scoresStringArray));
+                users.put(pseudonyme,new Joueur(pseudonyme,meilleurScore,scores));
+                System.out.println(scores);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -93,10 +93,10 @@ public class Noyau extends Constantes {
         return users;
     }
 
-    static private TreeSet<Integer> toIntegerTreeSet(String[] str) {
-        TreeSet<Integer> result = new TreeSet<>();
+    static private ArrayList<Integer> toIntegerArrayList(String[] str) {
+        ArrayList<Integer> result = new ArrayList<>();
         for (int i = 0; i < str.length; i++) {
-            result.add(Integer.valueOf(str[i]));
+           result.add(Integer.valueOf(str[i]));
         }
         return result;
     }

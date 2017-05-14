@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18b1e5ea-58d6-4e6c-9b87-921f32730187" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/Session1/Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/Session1/Session1.fxml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Session1/Controller.java" afterPath="$PROJECT_DIR$/src/Session/Controller.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Session1/Session1.fxml" afterPath="$PROJECT_DIR$/src/Session/Session.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/Core/Noyau.class" afterPath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/Core/Noyau.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/Login/Controller.class" afterPath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/Login/Controller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/MainPackage/Main.class" afterPath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/MainPackage/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/MainWindow/Controller.class" afterPath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/MainWindow/Controller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/Session/Controller.class" afterPath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/Session/Controller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/Session/Session.fxml" afterPath="$PROJECT_DIR$/out/production/Le_Pendu_TP1_POO_ESI/Session/Session.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/Joueur.java" afterPath="$PROJECT_DIR$/src/Core/Joueur.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/Noyau.java" afterPath="$PROJECT_DIR$/src/Core/Noyau.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/fichiers/users.txt" afterPath="$PROJECT_DIR$/src/Core/fichiers/users.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Login/Controller.java" afterPath="$PROJECT_DIR$/src/Login/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MainPackage/Main.java" afterPath="$PROJECT_DIR$/src/MainPackage/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MainWindow/Controller.java" afterPath="$PROJECT_DIR$/src/MainWindow/Controller.java" />
     </list>
     <ignored path="Le_Pendu_TP1_POO_ESI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,21 +34,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Noyau.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Noyau.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Core/Noyau.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="92" column="21" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
+            <state relative-caret-position="523">
+              <caret line="101" column="5" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="users.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Core/fichiers/users.txt">
+      <file leaf-file-name="mots.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Core/fichiers/mots.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+              <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -73,8 +57,31 @@
       <file leaf-file-name="Joueur.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Core/Joueur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+            <state relative-caret-position="442">
+              <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+              <folding>
+                <element signature="e#634#635#0" expanded="true" />
+                <element signature="e#667#668#0" expanded="true" />
+                <element signature="e#719#720#0" expanded="true" />
+                <element signature="e#763#764#0" expanded="true" />
+                <element signature="e#800#801#0" expanded="true" />
+                <element signature="e#836#837#0" expanded="true" />
+                <element signature="e#891#892#0" expanded="true" />
+                <element signature="e#941#942#0" expanded="true" />
+                <element signature="e#986#987#0" expanded="true" />
+                <element signature="e#1015#1016#0" expanded="true" />
+                <element signature="e#1070#1071#0" expanded="true" />
+                <element signature="e#1105#1106#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Core/fichiers/users.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -98,6 +105,7 @@
         <option value="$PROJECT_DIR$/src/MainWindow/Controller.java" />
         <option value="$PROJECT_DIR$/src/Login/Controller.java" />
         <option value="$PROJECT_DIR$/src/Core/fichiers/users.txt" />
+        <option value="$PROJECT_DIR$/src/Core/Joueur.java" />
         <option value="$PROJECT_DIR$/src/Core/Noyau.java" />
       </list>
     </option>
@@ -695,18 +703,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/Joueur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Core/MultiChancesCase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core/fichiers/users - Copy.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core/Joueur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="e#634#635#0" expanded="true" />
+            <element signature="e#667#668#0" expanded="true" />
+            <element signature="e#719#720#0" expanded="true" />
+            <element signature="e#763#764#0" expanded="true" />
+            <element signature="e#800#801#0" expanded="true" />
+            <element signature="e#836#837#0" expanded="true" />
+            <element signature="e#891#892#0" expanded="true" />
+            <element signature="e#941#942#0" expanded="true" />
+            <element signature="e#986#987#0" expanded="true" />
+            <element signature="e#1015#1016#0" expanded="true" />
+            <element signature="e#1070#1071#0" expanded="true" />
+            <element signature="e#1105#1106#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core/fichiers/mots.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core/fichiers/users.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -721,16 +766,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Core/Noyau.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="92" column="21" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/fichiers/users.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+        <state relative-caret-position="523">
+          <caret line="101" column="5" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
           <folding />
         </state>
       </provider>
