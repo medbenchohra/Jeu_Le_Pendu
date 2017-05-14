@@ -5,16 +5,42 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.Controller">
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXTextField fx:id="username" labelFloat="true" layoutX="177.0" layoutY="137.0" prefHeight="42.0" prefWidth="228.0" promptText="Pseudonyme" />
-            <JFXButton fx:id="signup" buttonType="RAISED" layoutX="345.0" layoutY="252.0" onAction="#MakeSignUp" prefHeight="33.0" prefWidth="73.0" ripplerFill="WHITE" style="-fx-background-color: #2152B4;" text="Inscription" textFill="WHITE" />
-            <JFXButton fx:id="login" buttonType="RAISED" layoutX="177.0" layoutY="252.0" onAction="#makeLogin" prefHeight="33.0" prefWidth="73.0" ripplerFill="WHITE" style="-fx-background-color: #2152B4;" text="Connexion" textFill="WHITE" />
-            <Label fx:id="messageAlert" layoutX="177.0" layoutY="200.0" />
+            <JFXTextField fx:id="username" labelFloat="true" layoutX="188.0" layoutY="181.0" prefHeight="42.0" prefWidth="228.0" promptText=" Pseudonyme">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <Label fx:id="messageAlert" layoutX="188.0" layoutY="233.0">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <HBox alignment="CENTER" layoutX="152.0" layoutY="287.0" spacing="60.0">
+               <children>
+                  <JFXButton fx:id="signup" onAction="#MakeSignUp" prefHeight="33.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: #2152B4;" text="S'inscrire" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="login" onAction="#makeLogin" prefHeight="33.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: #2152B4;" text="Se Connecter" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <Label layoutX="103.0" layoutY="47.0" text="Bienvenue dans le jeu du Pendu">
+               <font>
+                  <Font name="Arabic Typesetting" size="44.0" />
+               </font>
+            </Label>
          </children>
          <effect>
             <DropShadow />

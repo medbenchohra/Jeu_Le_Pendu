@@ -24,6 +24,9 @@ public class Controller implements Initializable   {
     private JFXButton sessionStartBtn;
 
     @FXML
+    private JFXButton scoresListBtn;
+
+    @FXML
     private JFXButton disconnnecte;
 
 
@@ -41,6 +44,11 @@ public class Controller implements Initializable   {
     @FXML
     void BeginSession(ActionEvent event) throws Exception {
         Main.gotoSessionMenu();
+    }
+
+    @FXML
+    void ShowScores(ActionEvent event) throws Exception {
+        Main.gotoListScore();
     }
 
 }

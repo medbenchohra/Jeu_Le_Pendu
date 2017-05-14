@@ -48,14 +48,13 @@ public class Main extends Application {
         primaryStage.setTitle("Le Pendu");
         primaryStage.show();
     }
-    public static void gotoSession1()throws Exception{
+    public static void gotoListScore()throws Exception{
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("../Session/Session.fxml"));
+        loader.setLocation(Main.class.getResource("../ListScores/Scores.fxml"));
         mainLayout = loader.load();
         Scene scene = new Scene(mainLayout);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.setTitle("Le Pendu");
         primaryStage.show();
     }
 
