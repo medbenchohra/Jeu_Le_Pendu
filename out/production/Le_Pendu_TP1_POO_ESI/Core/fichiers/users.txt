@@ -1,0 +1,6 @@
+mohamed;45
+elhadi;41
+amine;19
+oussama;19
+test;0
+Elhadi;0

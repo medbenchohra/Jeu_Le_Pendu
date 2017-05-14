@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Session.Controller">
+   <children>
+      <Pane layoutX="-2.0" layoutY="60.0" prefHeight="340.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="155.0" fitWidth="192.0" layoutX="394.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox layoutY="79.0" prefHeight="115.0" prefWidth="363.0">
+               <children>
+                  <HBox prefHeight="29.0" prefWidth="356.0">
+                     <children>
+                        <Label fx:id="Mot" alignment="CENTER" prefHeight="43.0" prefWidth="356.0" text="Mot N°1" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="32.0" prefWidth="356.0">
+                     <children>
+                        <Label fx:id="TypeQuestion" alignment="CENTER" prefHeight="28.0" prefWidth="356.0" text="DEFINITION" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="35.0" prefWidth="356.0">
+                     <children>
+                        <Label fx:id="Question" alignment="CENTER" prefHeight="30.0" prefWidth="356.0" text="ELEGANT" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox fx:id="CasesMot" layoutX="19.0" layoutY="234.0" prefHeight="32.0" prefWidth="562.0" />
+         </children>
+      </Pane>
+      <HBox prefHeight="37.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="100.0" prefWidth="425.0">
+               <children>
+                  <Label fx:id="Pseud" alignment="CENTER" prefHeight="49.0" prefWidth="309.0" text="USERNAME" />
+                  <Label fx:id="HighScore" alignment="CENTER" prefHeight="53.0" prefWidth="310.0" text="HighScore" />
+               </children>
+            </VBox>
+            <Label fx:id="Score" alignment="CENTER" prefHeight="101.0" prefWidth="409.0" text="Score" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
