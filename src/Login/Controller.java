@@ -32,7 +32,7 @@ public class Controller {
             if (Noyau.pseudonymeValide(pseud)) {
                 Joueur user = Noyau.Inscription(pseud);
                 if (user != null) {
-                    Main.user = user;
+                    Noyau.user = user;
                     Main.gotoMainWindow();
                 } else {
                     messageAlert.setTextFill(Color.RED);
@@ -50,7 +50,7 @@ public class Controller {
             if (Noyau.pseudonymeValide(pseud)) {
                 Joueur user = Noyau.Connecter(pseud);
                 if (user != null) {
-                    Main.user = user;
+                    Noyau.user = user;
                     Main.gotoMainWindow();
                 } else {
                     messageAlert.setTextFill(Color.RED);

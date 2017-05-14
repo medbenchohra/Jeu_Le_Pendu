@@ -1,18 +1,21 @@
 package Session;
 
-import Core.Case;
-import Core.MultiChancesCase;
-import Core.PropositionCase;
-import Core.Session;
+import Core.*;
+import MainPackage.Main;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.geometry.Pos;
+import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
-import MainPackage.Main;
-import javafx.fxml.Initializable;
 
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,7 +23,19 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    private Label Mot;
+    private Label Pseudonyme;
+
+    @FXML
+    private Label HighScore;
+
+    @FXML
+    private Label Score;
+
+    @FXML
+    private ImageView Image;
+
+    @FXML
+    private Label NbrMot;
 
     @FXML
     private Label TypeQuestion;
@@ -31,94 +46,138 @@ public class Controller implements Initializable {
     @FXML
     private HBox CasesMot;
 
-    @FXML
-    private Label Pseud;
-
-    @FXML
-    private Label HighScore;
-
-    @FXML
-    private Label Score;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int i = 0;
-        //while (i < 10) {
-            Pseud.setText("Pseudonyme : " + Main.user.getPseudonyme());
-            HighScore.setText("HighScore : " + Main.user.getMeilleurScore());
-            Score.setText("Score : " + 0);
-            Main.sess = new Session();
-            Mot.setText("Mot N°" + (i + 1));
-            TypeQuestion.setText(Main.sess.getQuestions()[i].getTypeQuestion().toString());
-            Question.setText(Main.sess.getQuestions()[i].getQuestion());
-            Case[] cases = Main.sess.getQuestions()[i].getCases();
+            Pseudonyme.setText("" + Noyau.user.getPseudonyme());
+            HighScore.setText("" + Noyau.user.getMeilleurScore());
+            Score.setText("" + 0);
+            CasesMot.setAlignment(Pos.CENTER);
+            CasesMot.setSpacing(5);
+            Noyau.session = new Session();
+            PlaySession(0);
+        }
+    public void PlaySession(int i){
+        if (i < 10 && Noyau.session.getNbTromp()<6) {
+            NbrMot.setText("Mot N°" + (i + 1));
+            TypeQuestion.setText(Noyau.session.getQuestions()[i].getTypeQuestion().toString());
+            Question.setText(Noyau.session.getQuestions()[i].getQuestion());
+            Case[] cases = Noyau.session.getQuestions()[i].getCases();
             int j;
             for (j = 0; j < cases.length; j++)
                 if (cases[j] instanceof PropositionCase) {
                     JFXComboBox props = new JFXComboBox();
+                    props.setStyle("-fx-background-color: #FFD54F;");
+                    props.setMaxSize(40, 30);
                     for (int k = 0; k < 4; k++) {
                         props.getItems().add(((PropositionCase) cases[j]).getLettresPoss()[k]);
-                        props.setStyle("-fx-background-color: #FFD54F;");
-                        props.setId(j + "");
                     }
+                    props.setId(j + "");
                     props.setOnAction(event -> {
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Voulez vous confirmez votre reponse?");
-                        alert.showAndWait();
-                        if (alert.getResult().getText().equals("OK")) {
-                            invisible(Integer.parseInt(props.getId()));
-                            //if la réponse est juste :
-                            //
-                            props.setDisable(true); // on ne peut plus le changer
-                            visible();
-                            //alert = new Alert(Alert.AlertType.INFORMATION,"Votre réponse est juste!");
-                            if (allDisabled()) // tout le mot est trouvé
-                            {
+                            //invisible(Integer.parseInt(props.getId()));
+                            props.setDisable(true);
+                            //visible();
+                            char l = (char) props.getValue();
+                            if (((PropositionCase) cases[Integer.parseInt(props.getId())]).stop(l)) {
+                                Noyau.session.setNbTromp(Noyau.session.getNbTromp()+1);
+                                //todo:image
+                                Score.setText((Integer.parseInt(Score.getText())+Noyau.session.calculerScore(cases,i))+"");
                                 CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
-                            } else {
+                                PlaySession(i + 1);
                             }
-                        } else {
+                            if (allDisabled()){
+                                Score.setText((Integer.parseInt(Score.getText())+Noyau.session.calculerScore(cases,i))+"");
+                                CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
+                                PlaySession(i + 1);
+                            }
+                            else{
 
-                        }
+                            }
                     });
                     CasesMot.getChildren().add(props);
-
-                } else if (cases[j] instanceof MultiChancesCase) {
-                    JFXTextField mtext = new JFXTextField();
-                    mtext.setStyle("-fx-background-color: #FF8A65;");
-                    mtext.setId(j + "");
-                    mtext.setOnAction(event -> {
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Voulez vous confirmez votre reponse?");
-                        alert.showAndWait();
-                        if (alert.getResult().getText().equals("OK")) {
-                            mtext.setDisable(true);
-                            if (allDisabled()) {
-                                CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
-                            }
-                        } else {
-                            mtext.setText("");
-                        }
-                    });
-                    CasesMot.getChildren().add(mtext);
                 } else {
-                    JFXTextField text = new JFXTextField();
-                    text.setStyle("-fx-background-color: #AED581;");
-                    text.setId(j + "");
-                    text.setOnAction(event -> {
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Voulez vous confirmez votre reponse?");
-                        alert.showAndWait();
-                        if (alert.getResult().getText().equals("OK")) {
-                            text.setDisable(true);
-                            if (allDisabled()) {
-                                CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
-                            }
-                        } else {
-                            text.setText("");
-                        }
-                    });
-                    CasesMot.getChildren().add(text);
-                }
-        //}
-        }
+                    if (cases[j] instanceof MultiChancesCase) {
+                        JFXTextField mtext = new JFXTextField();
+                        mtext.setStyle("-fx-background-color: #FF8A65;");
+                        mtext.setMaxSize(40, 30);
+                        mtext.setId(j + "");
+                        mtext.addEventFilter(KeyEvent.KEY_TYPED,letter_Validation(1));
 
+                        /*mtext.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+                            String newText = change.getControlNewText();
+                            if (newText.length()>1){
+                                return null;
+                            }else{
+                                return change;
+                            }
+                        }));*/
+                        mtext.setOnAction(event -> {
+                            char l = mtext.getText().charAt(0);
+                            if (((MultiChancesCase) cases[Integer.parseInt(mtext.getId())]).stop(l)) {
+                                Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
+                                Noyau.session.setNbTromp(Noyau.session.getNbTromp() + 1);
+                                //todo:image
+                                CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
+                                PlaySession(i + 1);
+                            } else if (((MultiChancesCase) cases[Integer.parseInt(mtext.getId())]).getReponse()) {
+                                mtext.setDisable(true);
+                            }
+                            if (allDisabled()) {
+                                Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
+                                CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
+                                PlaySession(i + 1);
+                            }
+                        });
+                        CasesMot.getChildren().add(mtext);
+                    } else {
+                        JFXTextField text = new JFXTextField();
+                        text.setStyle("-fx-background-color: #AED581;");
+                        text.setMaxSize(40, 30);
+                        text.setId(j + "");
+                        text.addEventFilter(KeyEvent.KEY_TYPED,letter_Validation(1));
+                        /*text.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+                            String newText = change.getControlNewText();
+                            if (newText.length()>1){
+                                return null;
+                            }else{
+                                return change;
+                            }
+                        }));*/
+                        text.setOnAction(event -> {
+                                char l = text.getText().charAt(0);
+                                text.setDisable(true);
+                                if (((ZeroChanceCase) cases[Integer.parseInt(text.getId())]).stop(l)) {
+                                    Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
+                                    Noyau.session.setNbTromp(Noyau.session.getNbTromp() + 1);
+                                    //todo:image
+                                    CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
+                                    PlaySession(i + 1);
+                                } else if (allDisabled()) {
+                                    Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
+                                    CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
+                                    PlaySession(i + 1);
+                                }
+                        });
+                        CasesMot.getChildren().add(text);
+                    }
+                }
+            }
+            else{
+             if ( Noyau.session.getNbTromp()==6) {
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Non! Vous avez perdu !!");
+                 alert.showAndWait();
+                 /*if (alert.getResult().getText().equals("OK")){
+
+                 }*/
+             }
+             else{
+                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bravo, Vous avez gagner !!");
+                 alert.showAndWait();
+                 /*if (alert.getResult().getText().equals("OK")){
+
+                 }*/
+             }
+            }
+            }
     private boolean allDisabled(){ // retourne vrai si le mot est completement trouver, faux sinon
         for (int i=0;i<CasesMot.getChildren().size();i++)
         {
@@ -130,7 +189,7 @@ public class Controller implements Initializable {
         return true;
     }
 
-    public void invisible (int pos) { // mettre toutes les cases invisibles sauf la case de position pos
+    /*public void invisible (int pos) { // mettre toutes les cases invisibles sauf la case de position pos
         for (int i=0;i<CasesMot.getChildren().size();i++)
         {
             if (i!=pos)
@@ -144,6 +203,31 @@ public class Controller implements Initializable {
         for (int i=0;i<CasesMot.getChildren().size();i++)
         {
             CasesMot.getChildren().get(i).setVisible(true);
+        }
+    }*/
+
+    public javafx.event.EventHandler<KeyEvent> letter_Validation(final Integer max_length){
+        return new javafx.event.EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                JFXTextField txt = (JFXTextField) event.getSource();
+                if (txt.getText().length()>= max_length){
+                    event.consume();
+                }
+                if (event.getCharacter().matches("[A-Za-z]")){
+
+                }else{
+                    event.consume();
+                }
+            }
+        };
+    }
+    class UpperCaseDocumentFilter extends DocumentFilter{
+        public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException{
+            fb.insertString(offset,text.toUpperCase(),attr);
+        }
+        public void replace (DocumentFilter.FilterBypass fb,int offset,int length,String text,AttributeSet attrs) throws BadLocationException{
+            fb.replace(offset,length,text.toLowerCase(),attrs);
         }
     }
 }

@@ -1,13 +1,16 @@
 package MainWindow;
-        import MainPackage.Main;
-        import com.jfoenix.controls.JFXButton;
-        import javafx.fxml.FXML;
-        import javafx.scene.control.Label;
-        import javafx.event.ActionEvent;
-        import javafx.fxml.Initializable;
 
-        import java.net.URL;
-        import java.util.ResourceBundle;
+import Core.Noyau;
+import MainPackage.Main;
+import com.jfoenix.controls.JFXButton;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
 
 public class Controller implements Initializable   {
 
@@ -23,10 +26,11 @@ public class Controller implements Initializable   {
     @FXML
     private JFXButton disconnnecte;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Pseudonyme.setText("Username : "+Main.user.getPseudonyme());
-        highScore.setText("HighScore : "+Main.user.getMeilleurScore());
+        Pseudonyme.setText("Username : " + Noyau.user.getPseudonyme());
+        highScore.setText("HighScore : " + Noyau.user.getMeilleurScore());
     }
 
     @FXML
@@ -36,8 +40,7 @@ public class Controller implements Initializable   {
 
     @FXML
     void BeginSession(ActionEvent event) throws Exception {
-        //Main.gotoSessionMenu();
-        Main.gotoSession1();
+        Main.gotoSessionMenu();
     }
 
 }
