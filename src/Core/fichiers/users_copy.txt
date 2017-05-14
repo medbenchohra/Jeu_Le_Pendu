@@ -1,0 +1,4 @@
+mohamed;45,30,20
+elhadi;41,4,8
+amine;19,9,0
+oussama;19,-6

@@ -3,47 +3,58 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Session.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Session.Controller">
    <children>
-      <Pane layoutX="-2.0" layoutY="60.0" prefHeight="340.0" prefWidth="600.0">
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="102.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="98.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <ImageView fitHeight="155.0" fitWidth="192.0" layoutX="394.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <VBox layoutY="79.0" prefHeight="115.0" prefWidth="363.0">
-               <children>
-                  <HBox prefHeight="29.0" prefWidth="356.0">
-                     <children>
-                        <Label fx:id="Mot" alignment="CENTER" prefHeight="43.0" prefWidth="356.0" text="Mot N°1" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="32.0" prefWidth="356.0">
-                     <children>
-                        <Label fx:id="TypeQuestion" alignment="CENTER" prefHeight="28.0" prefWidth="356.0" text="DEFINITION" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="35.0" prefWidth="356.0">
-                     <children>
-                        <Label fx:id="Question" alignment="CENTER" prefHeight="30.0" prefWidth="356.0" text="ELEGANT" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <HBox fx:id="CasesMot" layoutX="19.0" layoutY="234.0" prefHeight="32.0" prefWidth="562.0" />
+            <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="102.0" text="Pseudonyme :" />
+            <Label alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="102.0" text="MeuilleurScore :" GridPane.rowIndex="1" />
+            <Label fx:id="Pseudonyme" prefHeight="34.0" prefWidth="98.0" GridPane.columnIndex="1" />
+            <Label fx:id="HighScore" prefHeight="35.0" prefWidth="98.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
-      </Pane>
-      <HBox prefHeight="37.0" prefWidth="600.0">
+      </GridPane>
+      <GridPane layoutX="586.0" layoutY="8.0" prefHeight="60.0" prefWidth="200.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <VBox prefHeight="100.0" prefWidth="425.0">
-               <children>
-                  <Label fx:id="Pseud" alignment="CENTER" prefHeight="49.0" prefWidth="309.0" text="USERNAME" />
-                  <Label fx:id="HighScore" alignment="CENTER" prefHeight="53.0" prefWidth="310.0" text="HighScore" />
-               </children>
-            </VBox>
-            <Label fx:id="Score" alignment="CENTER" prefHeight="101.0" prefWidth="409.0" text="Score" />
+            <Label alignment="CENTER_RIGHT" prefHeight="76.0" prefWidth="100.0" text="Score :" />
+            <Label fx:id="Score" prefHeight="71.0" prefWidth="100.0" GridPane.columnIndex="1" />
          </children>
-      </HBox>
+      </GridPane>
+      <ImageView fx:id="Image" fitHeight="189.0" fitWidth="236.0" layoutX="296.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
+      <GridPane layoutX="2.0" layoutY="338.0" prefHeight="90.0" prefWidth="794.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="NbrMot" alignment="CENTER" prefHeight="44.0" prefWidth="794.0" />
+            <Label fx:id="TypeQuestion" alignment="CENTER" prefHeight="34.0" prefWidth="794.0" GridPane.rowIndex="1" />
+            <Label fx:id="Question" alignment="CENTER" prefHeight="42.0" prefWidth="794.0" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <HBox fx:id="CasesMot" layoutX="14.0" layoutY="463.0" prefHeight="49.0" prefWidth="772.0" />
    </children>
 </AnchorPane>
