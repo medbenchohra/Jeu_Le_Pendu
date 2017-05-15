@@ -4,6 +4,7 @@ import Core.*;
 import MainPackage.Main;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.image.ImageView;
@@ -47,6 +48,15 @@ public class Controller implements Initializable {
 
     @FXML
     private HBox CasesMot;
+
+    @FXML
+    void returnToHome(ActionEvent event) {
+        try {
+            Main.gotoMainWindow();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

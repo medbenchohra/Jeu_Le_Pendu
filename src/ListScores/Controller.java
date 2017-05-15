@@ -43,6 +43,11 @@ public class Controller implements Initializable {
         }
     }
 
+    @FXML
+    void Deconnection(ActionEvent event) throws Exception {
+        Main.gotoLogin();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Pseudonyme.setText("Pseudonyme : " + Noyau.user.getPseudonyme());

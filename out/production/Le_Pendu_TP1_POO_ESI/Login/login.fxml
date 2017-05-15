@@ -24,19 +24,19 @@
                </font></Label>
             <HBox alignment="CENTER" layoutX="152.0" layoutY="287.0" spacing="60.0">
                <children>
-                  <JFXButton fx:id="signup" onAction="#MakeSignUp" prefHeight="33.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: #2152B4;" text="S'inscrire" textFill="WHITE">
+                  <JFXButton fx:id="login" onAction="#makeLogin" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-color: #2152B4;" text="Se connecter" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="login" onAction="#makeLogin" prefHeight="33.0" prefWidth="120.0" ripplerFill="WHITE" style="-fx-background-color: #2152B4;" text="Se Connecter" textFill="WHITE">
+                  <JFXButton fx:id="signup" onAction="#MakeSignUp" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-color: #2152B4;" text="S'inscrire" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
                </children>
             </HBox>
-            <Label layoutX="103.0" layoutY="47.0" text="Bienvenue dans le jeu du Pendu">
+            <Label layoutX="103.0" layoutY="47.0" text="Bienvenue dans le jeu du Pendu" textAlignment="CENTER" textFill="#2152b4">
                <font>
                   <Font name="Arabic Typesetting" size="44.0" />
                </font>

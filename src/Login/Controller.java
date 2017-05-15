@@ -32,11 +32,11 @@ public class Controller {
             if (Noyau.pseudonymeValide(pseud)) {
                 Joueur user = Noyau.inscription(pseud);
                 if (user != null) {
-                    Noyau.user = user;
-                    Main.gotoMainWindow();
+                    messageAlert.setTextFill(Color.GREEN);
+                    messageAlert.setText("Inscription réussite, essayez de se connecter");
                 } else {
                     messageAlert.setTextFill(Color.RED);
-                    messageAlert.setText("Vous etes deja inscris, essayez de se connecter");
+                    messageAlert.setText("Vous êtes deja inscris, essayez de se connecter");
                 }
             } else{
                 messageAlert.setTextFill(Color.RED);
@@ -54,7 +54,7 @@ public class Controller {
                     Main.gotoMainWindow();
                 } else {
                     messageAlert.setTextFill(Color.RED);
-                    messageAlert.setText("Vous n'etes pas inscris, veuillez vous s'inscrire");
+                    messageAlert.setText("Vous n'êtes pas inscris, veuillez vous s'inscrire");
                 }
             } else{
                 messageAlert.setTextFill(Color.RED);
