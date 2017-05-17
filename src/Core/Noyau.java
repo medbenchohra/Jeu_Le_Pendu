@@ -33,7 +33,7 @@ public class Noyau extends Constantes {
     private static void addScoreToPlayer(String pseudonyme, int score) {
         BufferedReader in = null;
         try {
-            in = new BufferedReader(new InputStreamReader(new FileInputStream("src/Core/fichiers/users.txt"), "UTF-8"));
+            in = new BufferedReader(new InputStreamReader(new FileInputStream("src/Core/Fichiers/users.txt"), "UTF-8"));
             HashMap<String,Joueur> users = fileToHashMap(in);
             users.get(pseudonyme).getScores().add(score);
             hashMapToFile(users);
@@ -47,7 +47,7 @@ public class Noyau extends Constantes {
     public static Joueur connecter(@NotNull String pseudonyme) {
         BufferedReader in = null;
         try {
-            in = new BufferedReader(new InputStreamReader(new FileInputStream("src/Core/fichiers/users.txt"), "UTF-8"));
+            in = new BufferedReader(new InputStreamReader(new FileInputStream("src/Core/Fichiers/users.txt"), "UTF-8"));
             HashMap<String,Joueur> donneesUtilisateurs = fileToHashMap(in);
             try {
                 in.close();
@@ -71,7 +71,7 @@ public class Noyau extends Constantes {
         BufferedReader in = null;
         BufferedWriter out = null;
         try {
-            in = new BufferedReader(new InputStreamReader(new FileInputStream("src/Core/fichiers/users.txt"), "UTF-8"));
+            in = new BufferedReader(new InputStreamReader(new FileInputStream("src/Core/Fichiers/users.txt"), "UTF-8"));
             HashMap<String,Joueur> donneesUtilisateurs = fileToHashMap(in);
             if (donneesUtilisateurs.containsKey(pseudonyme))
                 return null;
@@ -81,7 +81,7 @@ public class Noyau extends Constantes {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                out = new BufferedWriter(new FileWriter("src/Core/fichiers/users.txt",true));
+                out = new BufferedWriter(new FileWriter("src/Core/Fichiers/users.txt",true));
                 String str = pseudonyme + ";0" + "\n";
                 out.append(str);
                 out.flush();
@@ -122,7 +122,7 @@ public class Noyau extends Constantes {
         String line = "";
         String scoresString = "";
         try {
-            out = new BufferedWriter(new FileWriter("src/Core/fichiers/users.txt"));
+            out = new BufferedWriter(new FileWriter("src/Core/Fichiers/users.txt"));
             for (String pseudonyme : users.keySet()) {
                 scoresString = line = "";
                 ArrayList<Integer> scores = users.get(pseudonyme).getScores();

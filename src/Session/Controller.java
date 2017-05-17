@@ -2,11 +2,11 @@ package Session;
 
 import Core.*;
 import MainPackage.Main;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,11 +14,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Stop;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -52,6 +52,12 @@ public class Controller implements Initializable {
     @FXML
     void returnToHome(ActionEvent event) {
         try {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Voulez-vous sauvegarder votre score avant de sortir ?");
+            alert.showAndWait();
+//            alert.setHeaderText("header");
+//            alert.setContentText("");
+            if (alert.getResult().getText().equals("OK"))
+                Noyau.saveScore(Integer.valueOf(Score.getText()));
             Main.gotoMainWindow();
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,17 +66,28 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Pseudonyme.setText("Pseudonyme : " + Noyau.user.getPseudonyme());
-        highScore.setText("Meuilleur Score : " + Noyau.user.getMeilleurScore());
-        Score.setText("Score : " + 0);
+        changeImage(0);
+        Pseudonyme.setText(Noyau.user.getPseudonyme());
+        highScore.setText("" + Noyau.user.getMeilleurScore());
+        Score.setText("0");
         CasesMot.setAlignment(Pos.CENTER);
         CasesMot.setSpacing(5);
         Noyau.session = new Session();
         PlaySession(0);
     }
+
+    void changeImage(int i) {
+        if ( i >= 0 && i <=6 ) {
+//            Image.setImage(new Image(new File("C:\\IdeaProjects\\Le_Pendu_TP1_POO_ESI\\src\\Core\\Images\\" + i + ".png").toURI().toString()));
+//
+            Image.setImage(new Image(new File("src/Core/Images/" + i + ".png").toURI().toString()));
+//            Image.setImage(new Image("C:\\IdeaProjects\\Le_Pendu_TP1_POO_ESI\\src\\Core\\Images" + i + ".png"));
+        }
+    }
+
     public void PlaySession(int i)  {
         if (i < 10 && Noyau.session.getNbTromp()<6) {
-            NbrMot.setText("Mot N°" + (i + 1));
+            NbrMot.setText("" + (i + 1));
             TypeQuestion.setText(Noyau.session.getQuestions()[i].getTypeQuestion().toString());
             Question.setText(Noyau.session.getQuestions()[i].getQuestion());
             Case[] cases = Noyau.session.getQuestions()[i].getCases();
@@ -91,7 +108,7 @@ public class Controller implements Initializable {
                         char l = Character.toLowerCase((char) props.getValue());
                         if (((PropositionCase) cases[Integer.parseInt(props.getId())]).stop(l)) {
                             Noyau.session.setNbTromp(Noyau.session.getNbTromp() + 1);
-                            //todo:image
+                            changeImage(Noyau.session.getNbTromp());
                             Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
                             CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
                             PlaySession(i + 1);
@@ -107,6 +124,7 @@ public class Controller implements Initializable {
                     CasesMot.getChildren().add(props);
                 } else {
                     if (cases[j] instanceof MultiChancesCase) {
+                        boolean[] etat = new boolean[cases.length - 1];
                         JFXTextField mtext = new JFXTextField();
                         mtext.setStyle("-fx-background-color: #AED581;");
                         mtext.setMaxSize(60, 40);
@@ -124,19 +142,18 @@ public class Controller implements Initializable {
                             }
                         }));
                         mtext.setOnAction(event -> {
-                            invisible(Integer.parseInt(mtext.getId()));
+                            setDisable(etat,((MultiChancesCase) cases[Integer.parseInt(mtext.getId())]).getNbTromp(),Integer.parseInt(mtext.getId()));
                             char l = Character.toLowerCase(mtext.getText().charAt(0));
                             System.out.println(mtext.getText());
                             if (((MultiChancesCase) cases[Integer.parseInt(mtext.getId())]).stop(l)) {
                                 Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
                                 Noyau.session.setNbTromp(Noyau.session.getNbTromp() + 1);
-                                //todo:image
-                                visible();
+                                changeImage(Noyau.session.getNbTromp());
                                 CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
                                 PlaySession(i + 1);
                             } else if (((MultiChancesCase) cases[Integer.parseInt(mtext.getId())]).getReponse()) {
+                                recoverEtat(etat,Integer.parseInt(mtext.getId()));
                                 mtext.setDisable(true);
-                                visible();
                             }
                             if (allDisabled()) {
                                 Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
@@ -171,7 +188,7 @@ public class Controller implements Initializable {
                                     System.out.println("LOG: into if,");
                                     Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
                                     Noyau.session.setNbTromp(Noyau.session.getNbTromp() + 1);
-                                    //todo:image
+                                    changeImage(Noyau.session.getNbTromp());
                                     CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
                                     PlaySession(i + 1);
                                 } else if (allDisabled()) {
@@ -186,7 +203,7 @@ public class Controller implements Initializable {
             }
             else{
              if ( Noyau.session.getNbTromp()>=6) {
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Non! Vous avez perdu !!, voulez-vous sauvegarder votre score ?");
+                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Non! Vous avez perdu !!, voulez-vous sauvegarder votre score ?");
                  alert.showAndWait();
                  if (alert.getResult().getText().equals("OK")){
                      Noyau.saveScore(Integer.valueOf(Score.getText()));
@@ -234,6 +251,36 @@ public class Controller implements Initializable {
         }
     }
 
+    public boolean[] setDisable (boolean[] etat,int trmp,int pos) { // mettre toutes les cases invisibles sauf la case de position pos
+            if (trmp == 0) {
+                //etat = new boolean[CasesMot.getChildren().size() - 1];
+                for (int i = 0; i < CasesMot.getChildren().size(); i++) {
+                    if (i != pos) {
+                        //CasesMot.getChildren().get(i).setVisible(false);
+                        if (i < pos) {
+                            etat[i] = CasesMot.getChildren().get(i).isDisable();
+                        } else {
+                            etat[i - 1] = CasesMot.getChildren().get(i).isDisable();
+                        }
+                        CasesMot.getChildren().get(i).setDisable(true);
+                    }
+                }
+            }
+            return etat;
+        }
+
+        public void recoverEtat (boolean[] etat,int pos) { // mettre toutes les cases visibles
+            for (int i=0;i<CasesMot.getChildren().size();i++)
+            {
+                if (i!= pos && i<pos) {
+                    CasesMot.getChildren().get(i).setDisable(etat[i]);
+                }
+                else if (i!= pos && i>pos){
+                    CasesMot.getChildren().get(i).setDisable(etat[i-1]);
+                }
+            }
+        }
+
     public javafx.event.EventHandler<KeyEvent> letter_Validation(final Integer max_length){
         return new javafx.event.EventHandler<KeyEvent>() {
             @Override
@@ -257,4 +304,5 @@ public class Controller implements Initializable {
             fb.replace(offset,length,text.toLowerCase(),attrs);
         }
     }
+
 }

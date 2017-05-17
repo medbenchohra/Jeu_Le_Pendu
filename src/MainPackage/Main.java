@@ -1,12 +1,15 @@
 package MainPackage;
 
+import Core.Noyau;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
 
     public static Stage primaryStage;
     public static AnchorPane mainLayout;
@@ -42,8 +45,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("../MainWindow/Home.fxml"));
         mainLayout = loader.load();
-        Scene scene = new Scene(mainLayout);
-        primaryStage.setScene(scene);
+        primaryStage.setScene(new Scene(mainLayout));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Le Pendu");
         primaryStage.show();

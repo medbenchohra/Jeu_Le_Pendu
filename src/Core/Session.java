@@ -38,7 +38,7 @@ public class Session extends Constantes{
         SecureRandom rand = new SecureRandom();
 
         try {
-            in = new BufferedReader(new InputStreamReader(new FileInputStream("src/Core/fichiers/mots.txt"), "UTF-8"));
+            in = new BufferedReader(new InputStreamReader(new FileInputStream("src/Core/Fichiers/mots.txt"), "UTF-8"));
             LineNumberReader lignes = new LineNumberReader(in);
 
 //            long nbrMotsFichier = in.lines().count();
@@ -127,12 +127,18 @@ public class Session extends Constantes{
         int coefCase = 0;
 
         for (int i = 0; i < cases.length; i++) {
-            if (!(cases[i] instanceof ZeroChanceCase))
-                score = score + ((Malus)cases[i]).calculerMalus();
             score = score + cases[i].calculerScore();
         }
 
-        return coefQuestion*score;
+        score = score*coefQuestion;
+        System.out.println(calculerMalus);
+        if (question.getCalculerMalus()) for (int i = 0; i < cases.length; i++) {
+            if (!(cases[i]).getClass().getSimpleName().equals(Constantes.TAG_ZERO)) {
+                score = score + ((Malus)cases[i]).calculerMalus();
+            }
+        }
+
+        return score;
     }
 
 }

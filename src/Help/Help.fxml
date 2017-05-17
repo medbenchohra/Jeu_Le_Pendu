@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListScores.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Help.Controller">
    <children>
       <VBox layoutX="-4.0">
          <children>
@@ -74,11 +74,6 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXListView fx:id="Scores" layoutX="275.0" layoutY="114.0" prefHeight="236.0" prefWidth="248.0" />
-      <Label layoutX="149.0" layoutY="103.0" text="Mes Scores : " textFill="#2152b4">
-         <font>
-            <Font name="Roboto Bold" size="18.0" />
-         </font>
-      </Label>
+      <TextArea id="helpText" layoutX="10.0" layoutY="84.0" prefHeight="254.0" prefWidth="580.0" text="&#9;Description &#10;&#10;Le but du jeu est de deviner des mots a l’aide des indications (il y en a trois), en début le joueur doit &#10;s’inscrire s’il n’a pas déjà, ça ce fait avec un pseudonyme qui est unique pour chaque joueur, puis il &#10;peut se connecter avec ce compte pour accéder au menu principal du jeu. Le joueur peut maintenant &#10;commencer à jouer ou bien afficher ses scores, il peut aussi se déconnecter ou revenir au menu&#10;principal à tous moment. Au sein du jeu une liste des mots sera affichée séquentiellement,&#10;le passage d’un mot à un autre n’ai possible que si le joueur a bien deviné le mot ou en cas d’échec.&#10;Le score va être mis à jour après chaque passage (mot deviné ou raté). Après chaque échec la photo&#10;du pendu vas développer et après 6 mots ratés le joueur perd la partie.&#10;&#10;&#10;&#9;Règles &#10;&#10;- Si le joueur a raté une case de type « Zéro Chance » ou « Proposition » , le mot est raté directement&#10;- Dans le cas d’une case de type «Multi Chances » joueur a 3 chances pour bien deviner la case&#10;- En cas de réussite le score va augmenter par :&#10;&#9;# 3 points en cas d’une case de type « Zéro Chance »&#10;&#9;# 2 points en cas d’une case de type « Multi Chances »&#10; &#9;# 1 point en cas d’une case de type « Proposition »&#10;- Chaque question a un coefficient, en cas de réussite le score va être multipliée par :&#10;&#9;# Un coefficient de 3 en cas d’une « Définition »&#10;&#9;# Un coefficient de 2 en cas d’un « Synonyme  »&#10;&#9;# Un coefficient de 1 en cas d’un « Antonyme »&#10;- Dans le cas ou la somme des cases de type « Multi Chance » et « Proposition » est supérieur a cinq,&#10;le joueur vas être sanctionné s’il rate dans ces cases.&#10;- Dans le cas de sanction, le joueur perd :&#10;&#9;# 2 points en cas d’une case de type « Proposition »  &#10;&#9;# 1 point en cas d’une case de type « Multi Chances »&#10;&#9;# 0 points en cas d’une case de type « Zéro Chance » (pas de malus)&#10;" />
    </children>
 </AnchorPane>

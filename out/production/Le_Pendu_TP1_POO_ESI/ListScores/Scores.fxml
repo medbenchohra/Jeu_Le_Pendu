@@ -13,7 +13,33 @@
    <children>
       <VBox layoutX="-4.0">
          <children>
-            <Label id="Pseudonyme" fx:id="Pseudonyme" alignment="CENTER" text="Pseudonyme : " textFill="#2152b4">
+            <Label id="Pseudonyme" fx:id="PseudonymeLabel" alignment="CENTER" text="Pseudonyme : " textFill="#2152b4">
+               <font>
+                  <Font name="Roboto Bold" size="16.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="20.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label id="highScore" fx:id="highScoreLabel" alignment="CENTER" text="Meilleur Score : " textFill="#2152b4">
+               <padding>
+                  <Insets bottom="10.0" left="20.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font name="Roboto Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <VBox layoutX="149.0">
+         <children>
+            <Label id="Pseudonyme" fx:id="Pseudonyme" alignment="CENTER" text="le pseudo ">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
@@ -24,7 +50,7 @@
                   <Insets bottom="5.0" left="20.0" top="10.0" />
                </padding>
             </Label>
-            <Label id="highScore" fx:id="highScore" alignment="CENTER" text="Meilleur Score : " textFill="#2152b4">
+            <Label id="highScore" fx:id="highScore" alignment="CENTER" text="le meilleur score ">
                <padding>
                   <Insets bottom="10.0" left="20.0" top="5.0" />
                </padding>
