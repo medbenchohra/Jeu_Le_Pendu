@@ -39,10 +39,7 @@ public class Session extends Constantes{
 
         try {
             in = new BufferedReader(new InputStreamReader(new FileInputStream("src/Core/Fichiers/mots.txt"), "UTF-8"));
-            LineNumberReader lignes = new LineNumberReader(in);
-
-//            long nbrMotsFichier = in.lines().count();
-            int borne = rand.nextInt(nbrMotsFichier - 10);
+            int borne = rand.nextInt(calculerNbrLignes() - 10);
             for (int i = 0; i < borne; i++) {
                 new String(in.readLine());
             }
@@ -139,6 +136,25 @@ public class Session extends Constantes{
         }
 
         return score;
+    }
+
+    public int calculerNbrLignes () {
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(new InputStreamReader(new FileInputStream("src/Core/Fichiers/mots.txt"),"UTF-8"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        int nbrMotsFichier = Integer.parseInt("" + in.lines().count());
+        try {
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return nbrMotsFichier;
     }
 
 }
