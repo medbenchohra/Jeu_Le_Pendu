@@ -15,9 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-import java.util.Scanner;
+import java.util.*;
 
 public class Controller implements Initializable {
 
@@ -31,7 +29,7 @@ public class Controller implements Initializable {
     private JFXButton homeBtn;
 
     @FXML
-    private JFXListView<Integer> Scores;
+    private JFXListView<Label> Scores;
 
 
     @FXML
@@ -50,16 +48,22 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Pseudonyme.setText("Pseudonyme : " + Noyau.user.getPseudonyme());
-        highScore.setText("Meuilleur Score : " + Noyau.user.getMeilleurScore());
+        Pseudonyme.setText(Noyau.user.getPseudonyme());
+        highScore.setText("" + Noyau.user.getMeilleurScore());
 
-        Scores = new JFXListView<>();
         ArrayList<Integer> list = Noyau.user.getScores();
-        System.out.println(list);
-//        for (int i=0;i<list.size();i++) {
-//            Scores.getItems().add(list.get(i));
-//        }
-        Scores.setItems(FXCollections.observableArrayList(list));
+        Collections.sort(list, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                if (o1.intValue() > o2.intValue())
+                    return -1;
+                else
+                    return 1;
+            }
+        });
+        for (int i=0;i<list.size();i++) {
+            Scores.getItems().add(new Label("" + list.get(i)));
+        }
     }
 }
 

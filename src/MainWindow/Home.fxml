@@ -49,8 +49,6 @@
             <Font name="Roboto Bold" size="16.0" />
          </font>
       </JFXButton>
-      <Line endX="100.0" layoutX="108.0" layoutY="70.0" startX="-100.0" />
-      <Line endX="100.0" layoutX="291.0" layoutY="70.0" startX="-100.0" />
-      <Line endX="100.0" layoutX="493.0" layoutY="70.0" startX="-100.0" />
+      <Line endX="590" layoutX="0" layoutY="70.0" startX="10" />
    </children>
 </AnchorPane>

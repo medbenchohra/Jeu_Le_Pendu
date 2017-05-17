@@ -32,8 +32,8 @@ public class Controller implements Initializable   {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Pseudonyme.setText("Pseudonyme : " + Noyau.user.getPseudonyme());
-        highScore.setText("Meilleure Score : " + Noyau.user.getMeilleurScore());
+        Pseudonyme.setText(Noyau.user.getPseudonyme());
+        highScore.setText("" + Noyau.user.getMeilleurScore());
     }
 
     @FXML

@@ -29,7 +29,7 @@ public class Controller implements Initializable {
     private Label Pseudonyme;
 
     @FXML
-    private Label HighScore;
+    private Label highScore;
 
     @FXML
     private Label Score;
@@ -60,14 +60,14 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-            Pseudonyme.setText("" + Noyau.user.getPseudonyme());
-            HighScore.setText("" + Noyau.user.getMeilleurScore());
-            Score.setText("" + 0);
-            CasesMot.setAlignment(Pos.CENTER);
-            CasesMot.setSpacing(5);
-            Noyau.session = new Session();
-            PlaySession(0);
-        }
+        Pseudonyme.setText("Pseudonyme : " + Noyau.user.getPseudonyme());
+        highScore.setText("Meuilleur Score : " + Noyau.user.getMeilleurScore());
+        Score.setText("Score : " + 0);
+        CasesMot.setAlignment(Pos.CENTER);
+        CasesMot.setSpacing(5);
+        Noyau.session = new Session();
+        PlaySession(0);
+    }
     public void PlaySession(int i)  {
         if (i < 10 && Noyau.session.getNbTromp()<6) {
             NbrMot.setText("Mot N°" + (i + 1));
@@ -85,25 +85,24 @@ public class Controller implements Initializable {
                     }
                     props.setId(j + "");
                     props.setOnAction(event -> {
-                            invisible(Integer.parseInt(props.getId()));
-                            props.setDisable(true);
-                            visible();
-                            char l = Character.toLowerCase((char) props.getValue());
-                            if (((PropositionCase) cases[Integer.parseInt(props.getId())]).stop(l)) {
-                                Noyau.session.setNbTromp(Noyau.session.getNbTromp()+1);
-                                //todo:image
-                                Score.setText((Integer.parseInt(Score.getText())+Noyau.session.calculerScore(cases,i))+"");
-                                CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
-                                PlaySession(i + 1);
-                            }
-                            if (allDisabled()){
-                                Score.setText((Integer.parseInt(Score.getText())+Noyau.session.calculerScore(cases,i))+"");
-                                CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
-                                PlaySession(i + 1);
-                            }
-                            else{
+                        invisible(Integer.parseInt(props.getId()));
+                        props.setDisable(true);
+                        visible();
+                        char l = Character.toLowerCase((char) props.getValue());
+                        if (((PropositionCase) cases[Integer.parseInt(props.getId())]).stop(l)) {
+                            Noyau.session.setNbTromp(Noyau.session.getNbTromp() + 1);
+                            //todo:image
+                            Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
+                            CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
+                            PlaySession(i + 1);
+                        }
+                        if (allDisabled()) {
+                            Score.setText((Integer.parseInt(Score.getText()) + Noyau.session.calculerScore(cases, i)) + "");
+                            CasesMot.getChildren().remove(0, CasesMot.getChildren().size());
+                            PlaySession(i + 1);
+                        } else {
 
-                            }
+                        }
                     });
                     CasesMot.getChildren().add(props);
                 } else {
