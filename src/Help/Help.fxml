@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Help.Controller">
    <children>
-      <VBox layoutX="-4.0">
+      <VBox>
          <children>
             <Label id="Pseudonyme" fx:id="PseudonymeLabel" alignment="CENTER" text="Pseudonyme : " textFill="#2152b4">
                <font>
@@ -37,7 +37,7 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <VBox layoutX="149.0">
+      <VBox layoutX="138.0">
          <children>
             <Label id="Pseudonyme" fx:id="Pseudonyme" alignment="CENTER" text="le pseudo ">
                <font>

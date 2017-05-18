@@ -36,7 +36,7 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <VBox layoutX="130.0">
+      <VBox layoutX="134.0">
          <children>
             <Label id="Pseudonyme" fx:id="Pseudonyme" alignment="CENTER" text="le pseudo">
                <font>

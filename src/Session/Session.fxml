@@ -77,9 +77,9 @@
                 <Font name="Roboto Bold" size="24.0" />
             </font>
         </Label>
-        <Label fx:id="NbrMot" alignment="CENTER" layoutX="108.0" layoutY="93.0" text="xx" textFill="#2152b4">
+        <Label fx:id="NbrMot" alignment="CENTER" layoutX="107.0" layoutY="95.0" text="xx" textFill="#2152b4">
             <font>
-                <Font name="Arial Bold" size="24.0" />
+                <Font name="Roboto Bold" size="24.0" />
             </font>
         </Label>
         <VBox layoutX="57.0" layoutY="403.0" spacing="10">

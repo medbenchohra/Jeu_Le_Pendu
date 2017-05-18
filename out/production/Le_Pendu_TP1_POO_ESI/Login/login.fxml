@@ -36,9 +36,9 @@
                   </JFXButton>
                </children>
             </HBox>
-            <Label layoutX="103.0" layoutY="47.0" text="Bienvenue dans le jeu du Pendu" textAlignment="CENTER" textFill="#2152b4">
+            <Label alignment="CENTER" layoutX="79.0" layoutY="48.0" text="Bienvenue dans le jeu du Pendu" textAlignment="CENTER" textFill="#2152b4">
                <font>
-                  <Font name="Arabic Typesetting" size="44.0" />
+                  <Font name="Andalus" size="36.0" />
                </font>
             </Label>
          </children>
